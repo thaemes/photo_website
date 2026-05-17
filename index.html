@@ -1,0 +1,91 @@
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div id="mobile-overlay" class="mobile-overlay" aria-hidden="true">
+    <button class="overlay-close" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
+    <nav id="mobile-nav-content"></nav>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <a href="index.html" class="site-title">Thomas Beelen</a>
+      <div class="site-subtitle">Photo, film, making</div>
+      <div class="section-tabs">
+        <button class="tab-btn active" data-section="photos" onclick="tabClick('photos')">Photos</button>
+        <button class="tab-btn" data-section="writing" onclick="tabClick('writing')">Writing</button>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebar-nav">
+      <!-- Injected by JS -->
+    </nav>
+  </aside>
+
+  <!-- MOBILE HEADER -->
+  <header class="mobile-header">
+    <a href="index.html" class="site-title">TB</a>
+    <div class="mobile-header-right">
+      <button class="tab-btn active" data-section="photos" onclick="tabClick('photos')">Photos</button>
+      <button class="tab-btn" data-section="writing" onclick="tabClick('writing')">Writing</button>
+      <button class="menu-icon" onclick="openMobileMenu()" aria-label="Open menu"> 
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- PHOTO GALLERY VIEW -->
+    <section id="section-photos" class="section active">
+      <div id="gallery-view">
+        <div class="gallery-main-wrap">
+          <button class="gallery-arrow left" id="arrow-left" onclick="galleryNav(-1)" aria-label="Previous">&#8592;</button>
+          <div class="gallery-main">
+            <img id="gallery-main-img" src="" alt="" loading="lazy">
+          </div>
+          <button class="gallery-arrow right" id="arrow-right" onclick="galleryNav(1)" aria-label="Next">&#8594;</button>
+        </div>
+        <div class="gallery-meta">
+          <span id="gallery-title-display"></span>
+          <span id="gallery-counter"></span>
+        </div>
+        <div class="gallery-strip" id="gallery-strip"></div>
+      </div>
+      <div id="gallery-empty" class="empty-state" style="display:none">
+        <p>No galleries yet. Run <code>./update.sh</code> to add one.</p>
+      </div>
+    </section>
+
+    <!-- WRITING / BLOG VIEW -->
+    <section id="section-writing" class="section">
+      <div id="writing-list-view">
+        <div class="article-list" id="article-list"></div>
+      </div>
+      <div id="writing-article-view" style="display:none">
+        <button class="back-btn" onclick="showArticleList()">← All articles</button>
+        <article id="article-content"></article>
+      </div>
+      <div id="writing-empty" class="empty-state" style="display:none">
+        <p>No articles yet. Add a <code>.md</code> file and run <code>./update.sh</code>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="site-data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
